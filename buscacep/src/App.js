@@ -4,7 +4,7 @@ import { Formik, Field, Form } from 'formik';
 
 
 export default () => {
-  
+
   function onSubmit(values, actions) {
     console.log('SUBMIT', values);
   }
@@ -40,9 +40,9 @@ export default () => {
           <div className="form-grup">
             <h1>Busca de Cidades</h1>
             <h3 className="sub-titulo">Digite o CEP no campo abaixo.</h3>          
-            <Field name="cep" type="text" onBlur={(ev) => onBlurCep(ev, setFieldValue)} />
+            <Field name="cep" type="text" onBlur={(ev) => onBlurCep(ev, setFieldValue)} className="dados" />
             <h3>Não sabe o seu CEP ? <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank">Pesquise aqui</a></h3>
-            <Field name="cidade" type="text" />
+            <Field name="cidade" type="text" className="dados"/>
           </div>         
         </Form>
       )}
