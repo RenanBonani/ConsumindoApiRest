@@ -27,7 +27,7 @@ export default () => {
         else{
           const cidadeAtendida = ['Andradina','Araçatuba','Birigui', 'Guararapes', 'Jales', 'Mirandópolis','Penápolis','Promissão','Três Lagoas'];
           const verificar = cidadeAtendida.includes(data.city);
-          if( verificar === true)
+          if( verificar )
             setFieldValue('cidade', data.city +' Cidade Atendida');
           else setFieldValue('cidade', data.city);
         }         
