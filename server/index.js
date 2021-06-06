@@ -4,6 +4,7 @@ const apiBrasil = express();
 const cors = require('cors');
 const pool = require('./db');
 const api = require('./api');
+const { response } = require('express');
 
 
 app.use(cors());
@@ -23,15 +24,15 @@ apiBrasil.listen(8001,() =>{
 
 
 // APi Brasil CEP//
-api.get('/cep:id'), async (req,req) => {
+api.get('/cep/:cep'), async (req,req) => {
+    const { cep } = req.params;
     try{
-        
+        const {data} = await api.get(`{${cep}}`);
+        return res.send({ cidade: data.city });
     }catch{
-
+        res.send({ error: error.message })
     }
 };
-
-
 
 
 // Banco de dados //
