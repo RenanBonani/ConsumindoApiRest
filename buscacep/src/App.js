@@ -15,13 +15,55 @@ export default () => {
     const cep = value?.replace(/[^0-9]/g, '');
 
     if (cep?.length !== 8) {
-      return;
+      setFieldValue('cidade', 'CEP invalido');
     }
 
     fetch(`https://brasilapi.com.br/api/cep/v1/{${cep}}`)
       .then((res) => res.json())
-      .then((data) => {        
-        setFieldValue('cidade', data.city);
+      .then((data) => {   
+        if (!data.city) {
+          setFieldValue('cidade', 'CEP invalido');
+        }
+        else{
+          /*
+          Buscando uma forma mais otimizada de fazer
+
+          const cidadeAtendida = ['Andradina','Araçatuba','Birigui', 'Guararapes', 'Jales', 'Mirandópolis','Penápolis','Promissão','Três Lagoas'];
+          
+          
+          */
+
+
+          if(data.city === 'Andradina'){
+            setFieldValue('cidade', data.city +' Cidade Atendida');
+          }
+          else if(data.city === 'Araçatuba'){
+            setFieldValue('cidade',data.city + ' Cidade Atendida');
+          }
+          else if(data.city === 'Birigui'){
+            setFieldValue('cidade',data.city + ' Cidade Atendida');
+          }
+          else if(data.city === 'Guararapes'){
+            setFieldValue('cidade',data.city + ' Cidade Atendida');
+          }
+          else if(data.city === 'Jales'){
+            setFieldValue('cidade',data.city + ' Cidade Atendida');
+          }
+          else if(data.city === 'Mirandópolis'){
+            setFieldValue('cidade',data.city + ' Cidade Atendida');
+          }
+          else if(data.city === 'Penápolis'){
+            setFieldValue('cidade',data.city + ' Cidade Atendida');
+          }
+          else if(data.city === 'Promissão'){
+            setFieldValue('cidade',data.city + ' Cidade Atendida');
+          }
+          else if(data.city === 'Três Lagoas'){
+            setFieldValue('cidade',data.city + ' Cidade Atendida');
+          }  
+          else setFieldValue('cidade', data.city);
+          
+        }         
       });
 
     }
