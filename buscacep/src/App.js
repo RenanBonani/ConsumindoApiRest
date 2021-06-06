@@ -25,47 +25,13 @@ export default () => {
           setFieldValue('cidade', 'CEP invalido');
         }
         else{
-          /*
-          Buscando uma forma mais otimizada de fazer
-
           const cidadeAtendida = ['Andradina','Araçatuba','Birigui', 'Guararapes', 'Jales', 'Mirandópolis','Penápolis','Promissão','Três Lagoas'];
-          
-          
-          */
-
-
-          if(data.city === 'Andradina'){
+          const verificar = cidadeAtendida.includes(data.city);
+          if( verificar === true)
             setFieldValue('cidade', data.city +' Cidade Atendida');
-          }
-          else if(data.city === 'Araçatuba'){
-            setFieldValue('cidade',data.city + ' Cidade Atendida');
-          }
-          else if(data.city === 'Birigui'){
-            setFieldValue('cidade',data.city + ' Cidade Atendida');
-          }
-          else if(data.city === 'Guararapes'){
-            setFieldValue('cidade',data.city + ' Cidade Atendida');
-          }
-          else if(data.city === 'Jales'){
-            setFieldValue('cidade',data.city + ' Cidade Atendida');
-          }
-          else if(data.city === 'Mirandópolis'){
-            setFieldValue('cidade',data.city + ' Cidade Atendida');
-          }
-          else if(data.city === 'Penápolis'){
-            setFieldValue('cidade',data.city + ' Cidade Atendida');
-          }
-          else if(data.city === 'Promissão'){
-            setFieldValue('cidade',data.city + ' Cidade Atendida');
-          }
-          else if(data.city === 'Três Lagoas'){
-            setFieldValue('cidade',data.city + ' Cidade Atendida');
-          }  
           else setFieldValue('cidade', data.city);
-          
         }         
       });
-
     }
 
 
