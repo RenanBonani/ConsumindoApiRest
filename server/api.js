@@ -1,7 +1,5 @@
-const axios = require("axios");
+const api = require("axios");
 
-const api = axios.create({
-    baseUrl:'https://brasilapi.com.br/api/cep/v1/'
-});
+api.create();
 
-module.exports.api;
+module.exports = api
