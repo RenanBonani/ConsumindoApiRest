@@ -14,12 +14,18 @@ app.listen(5000, () =>{
 app.get('/cep/:cep', (request, response) => {
     const { cep } = request.params;
     api.get(`https://brasilapi.com.br/api/cep/v1/{${cep}}`)
-    .then((responseApi) => response.send({ cidade: responseApi.data.city}))
-    .catch((error) => response.send({ erro: error.message }))
- })
+    .then((responseApi) => {
+        const cidadeAtendida = ['Andradina','Araçatuba','Birigui', 'Guararapes', 'Jales', 'Mirandópolis','Penápolis','Promissão','Três Lagoas'];
+        const verificar = cidadeAtendida.includes(responseApi.data.city);
+        if(verificar)
+            response.send({ cidade: responseApi.data.city, mensagem: 'Cidade Atendida'})
+        else response.send({ cidade: responseApi.data.city})
+    }).catch((error) => response.send({ erro: error.message }))
+})
 
 // Banco de dados //
-app.get("/cidade/:id"), async (req,req) => {
+
+app.get("/cidade/:id"), async (req,res) => {
     try{
         const {id} =req.params;
         const todo = await pool.query("SELECT * FROM cidade Where cidade_id =$1",[id] );
