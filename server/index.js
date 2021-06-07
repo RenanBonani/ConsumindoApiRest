@@ -1,39 +1,22 @@
 const express = require('express');
 const app = express();
-const apiBrasil = express();
 const cors = require('cors');
-const pool = require('./db');
 const api = require('./api');
-const { response } = require('express');
-
+const pool = require('./db');
 
 app.use(cors());
 app.use(express.json());
-apiBrasil.use(express.json());
 
-
-
-//   ROUTES   //
 app.listen(5000, () =>{
     console.log("app server has start on port 5000");
 });
-apiBrasil.listen(8001,() =>{
-    console.log("apiBrasil server has start on port 8000");
-});
 
-
-
-// APi Brasil CEP//
-api.get('/cep/:cep'), async (req,req) => {
-    const { cep } = req.params;
-    try{
-        const {data} = await api.get(`{${cep}}`);
-        return res.send({ cidade: data.city });
-    }catch{
-        res.send({ error: error.message })
-    }
-};
-
+app.get('/cep/:cep', (request, response) => {
+    const { cep } = request.params;
+    api.get(`https://brasilapi.com.br/api/cep/v1/{${cep}}`)
+    .then((responseApi) => response.send({ cidade: responseApi.data.city}))
+    .catch((error) => response.send({ erro: error.message }))
+ })
 
 // Banco de dados //
 app.get("/cidade/:id"), async (req,req) => {
